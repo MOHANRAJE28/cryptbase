@@ -1,0 +1,92 @@
+{% include 'header.html'%}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt</title>
+    <link rel="stylesheet" href="">
+    <link rel="icon" href="{% static 'image/logo.png' %}" type="image/icon type">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+<nav>
+  <div class="container">
+    <!-- <h2 class="log">Cryptography</h2> -->
+    <div class="logo">
+      <div class="profile-photo">
+        <img src="{% static 'image/logo.png' %}" alt="" />
+      </div>
+      <h2 class="log">PolyCrypto</h2>
+    </div>
+
+      <ul class="navbar">
+        <li class="navitem ">
+          <a class="navlink" href="http://127.0.0.1:8000/Home/">Home</a>
+        </li>
+        <li class="navitem">
+          <a class="navlink" href="http://127.0.0.1:8000/Home/">Encrypt Files</a>
+        </li>
+        <li class="navitem">
+          <a class="navlink" href="http://127.0.0.1:8000/DecryptFiles/">Decrypt Files</a>
+        </li>
+      </ul>
+ 
+    <div class="profile">
+      <label for="name" class="profile-name">Admin</label>
+      <div class="profile-photo">
+        <img src="{% static 'image/profile.jpg' %}" alt="" />
+      </div>
+      <button type="button" class="btn btn-primary " style=" column-gap: 16px ;">Logout</button>
+    </div>
+  </div>
+</nav> 
+
+
+<h1 class="en-head">Decrypt File</h1>
+
+    <div class="card shadow-sm  border-black p-2 mb- rounded-3">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr class="align-middle">
+                        <th scope="col">S.no</th>
+                        <th scope="col">File name</th>
+                        <th scope="col">File</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                {% if mydata %}
+                <tbody>
+                  {% for data in mydata %}
+                     <tr class="align-middle">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{data.file_name}}</td>
+                        <td><a href="{{data.my_file.url}}" style="text-decoration: none;">{{data.my_file}}</a></td>
+                        <!-- <td><%= element.regNumber %></td>
+                        <td class="<%= new Date(element.rcExpDate) < new Date() ? 'text-danger' : (new Date(element.rcExpDate) < nextThirtyDays ? 'text-warning' : '') %>"><%= formatDate(element.rcExpDate) %></td>
+                        <td class="<%= new Date(element.insExpDate) < new Date() ? 'text-danger' : (new Date(element.insExpDate) < nextThirtyDays ? 'text-warning' : '') %>"><%= formatDate(element.insExpDate) %></td> -->
+                        <td class="">
+                          <a href="deleteFile/{{data.id}}" class="btn btn-danger  btn-small"><i class="bi bi-trash"></i> </a>
+                           
+                        </td>
+                     </tr>
+                     {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+        </div>
+
+</body>
+</html>
+
+<!-- Bootstrap script -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>

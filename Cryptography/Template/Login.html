@@ -1,0 +1,100 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="icon" href="{% static 'image/logo.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+          <div class="signin-signup">
+              <form method="post" action="{% url 'login' %}" class="sign-in-form">
+                  {% csrf_token %}
+                  <h2 class="title">Sign in</h2>
+                  <div class="input-field">
+                      <i class="fas fa-user"></i>
+                      <input type="text" name="username" id="id_username" placeholder="Username" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-lock"></i>
+                      <input type="password" name="password" id="id_password" placeholder="Password" required />
+                  </div>
+                  <a href="http://127.0.0.1:8000/Home/"><button type="button" class="btn solid">Login</button></a>
+                  <p class="social-text">Or sign in with social platforms</p>
+              </form>
+
+              <form method="post" action="{% url 'signup' %}" class="sign-up-form">
+                  {% csrf_token %}
+                  <h2 class="title">Sign up</h2>
+                  <div class="input-field">
+                      <i class="fas fa-user"></i>
+                      <input type="text" name="username" id="id_username" placeholder="Username" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-pen"></i>
+                      <input type="text" name="first_name" id="id_first_name" placeholder="Full Name" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-pen"></i>
+                      <input type="text" name="last_name" id="id_last_name" placeholder="Last Name" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-envelope"></i>
+                      <input type="email" name="email" id="id_email" placeholder="Email" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-lock"></i>
+                      <input type="password" name="password" id="id_password" placeholder="Password" required />
+                  </div>
+                  <div class="input-field">
+                      <i class="fas fa-lock"></i>
+                      <input type="password" name="confirm_password" id="id_confirm_password" placeholder="Confirm Password" required />
+                  </div>
+                  <button type="submit" class="btn solid">Sign up</button>
+              </form>
+          </div>
+      </div>
+      <div class="panels-container">
+          <div class="panel left-panel">
+              <div class="content">
+                  <h3>New here?</h3>
+                  <p>
+                      It was that terrifying feeling you have as you tightly hold the
+                      covers over you with the knowledge that there is something hiding
+                      under your bed. You want to look, but you don't at the same time.
+                      You're frozen with fear and unable to act. That's where she found
+                      herself and she didn't know what to do next
+                  </p>
+                  <!-- <a href="{% url 'signup' %}" class="btn transparent" id="sign-up-btn">Sign up</a> -->
+                  <button class="btn transparent" id="sign-up-btn">Sign up</button>
+                </div>
+              <img src="{% static 'image/Login.svg' %}" class="image" />
+          </div>
+          <div class="panel right-panel">
+              <div class="content">
+                  <h3>New here?</h3>
+                  <p>
+                      It was that terrifying feeling you have as you tightly hold the
+                      covers over you with the knowledge that there is something hiding
+                      under your bed. You want to look, but you don't at the same time.
+                      You're frozen with fear and unable to act. That's where she found
+                      herself and she didn't know what to do next
+                  </p>
+                  <!-- <a href="{% url 'login' %}" class="btn transparent" id="sign-in-btn">Sign in</a> -->
+                  <button class="btn transparent" id="sign-in-btn">Sign in</button>
+                </div>
+              <img src="{% static 'image/Signup.svg' %}" class="image" />
+          </div>
+      </div>
+  </div>
+    <script src="{% static 'script/app.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+{%extends 'base.html'%} {% block content %}
+{% load static %} 
+<nav>
+  <div class="container">
+    <div class="logo">
+      <div class="profile-photo">
+        <img src="{% static 'image/logo.png' %}" alt="" />
+      </div>
+      <h2 class="log"><b>PolyCrypt</b></h2>
+    </div>
+      <ul class="navbar">
+        <li class="navitem ">
+          <a class="navlink" href="http://127.0.0.1:8000/Home/">Home</a>
+        </li>
+        <li class="navitem">
+          <a class="navlink" href="http://127.0.0.1:8000/Home/">Encrypt Files</a>
+        </li>
+        <li class="navitem">
+          <a class="navlink" href="http://127.0.0.1:8000/DecryptFiles/">Decrypt Files</a>
+        </li>
+      </ul>
+    <div class="profile">
+      <label for="name" class="profile-name">Admin</label>
+      <div class="profile-photo">
+        <img src="{% static 'image/profile.jpg' %}" alt="" />
+      </div>
+      <a href="http://127.0.0.1:8000/"><button type="button" class="btn btn-primary " style=" column-gap: 16px ;"> Logout </button></a>
+    </div>
+  </div>
+</nav> 
+
+<h1 class="en-head">Encrypt File</h1>
+
+<div class="center-container">
+<div class="bg-color">
+  <div class="container-fluid" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="row justify-content-center"> 
+    <div class="col-md-5"> 
+      <h3 class="page-hader text-white text-center">Upload Files</h3>
+      {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+          <div class="alert alert-danger">{{ message }}</div>
+        {% else %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endif %}
+      {% endfor %}
+      {% endif %}
+    <form
+        action="{% url 'uploadfile' %}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <div class="form-group"><label class="form-label" style="width: 100px; font-size: 15px; font-weight: 600;  text-transform: uppercase;">File Name</label> {{form.file_name}}</div>
+        <div class="form-group">
+          <label for="id_file" style="width: 100px; margin-top: 15px;font-size: 15px; font-weight: 600;  text-transform: uppercase;">File</label>
+          {{ form.file }}
+        </div>
+        <div class="text-center mt-3"> 
+          <button  type="submit" class="custom-btn ">Submit</button>
+        </div>
+      </form> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="card shadow-sm border-0 p-3 pb-0 mt-1 ">
+  <div class="table-responsive">
+      <table class="table table-hover table-sm">
+          <thead>
+              <tr class="align-middle">
+                  <th scope="col">S.no</th>
+                  <th scope="col">File name</th>
+                  <th scope="col">File</th>
+                  <th scope="col">Delete</th>
+               
+              </tr>
+          </thead>
+          {% if mydata %}
+          <tbody>
+            {% for data in mydata %}
+               <tr class="align-middle">
+                  <td>{{forloop.counter}}</td>
+                  <td>{{data.file_name}}</td>
+                  <td><a href="{{data.my_file.url}}" style="text-decoration: none;">{{data.my_file}}</a></td>
+                           <td class="">
+                    <a href="deleteFile/{{data.id}}" class="btn btn-danger  btn-small"><i class="bi bi-trash"></i> </a>
+                     
+                  </td>
+               </tr>
+               {% endfor %}
+          </tbody>
+          {% endif %}
+      </table>
+  </div>
+  </div>
+
+  
+<!-- Bootstrap script -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="solgan">
+  <p> personal data on the internet is protected
+    from malicious attacks, and even if someone gains access to it,
+     it cannot be easily read and used against you.</p>
+</div> -->
+
+
+  
+<!-- <div class="container-fluid" style="margin-top: 50px">
+  <div class="col-md-3 offset-md-3">
+    <h3 class="page-hader text-primary text-center">Upload Files</h3>
+
+    {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% else %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  
+
+    <form
+      action="{% url 'uploadfile' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="form-group"><label>File Name</label> {{form.file_name}}</div>
+      <div class="form-group">
+        <label>File</label>
+        {{ form.file }}
+      </div>
+      <button type="submit" class="btn btn-primary pull-right">Submit</button>
+    </form>
+
+  </div>
+</div> -->
+
+<!-- table -->
+<!-- <div class="col-md-6">
+  {% if mydata %}
+  <h3 class="page-header text-primary text-center">View File</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="text-align: center;">S.no</th>
+        <th>File name</th>
+        <th>File</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    {% for data in mydata %}
+    <tbody>
+      <tr>
+        <td style="text-align: center;">{{forloop.counter}}</td>
+        <td>{{data.file_name}}</td>
+        <td><a href="{{data.my_file.url}}">{{data.my_file}}</a></td>
+        <td style="text-align: center;">
+          <a href="deleteFile/{{data.id}}" 
+          class="btn btn-danger"> deleteFile </a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  {% endif %}
+</div> -->
+{% endblock %}
+
+
